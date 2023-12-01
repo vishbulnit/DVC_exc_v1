@@ -1,0 +1,4 @@
+filter_criteria:
+  num: 0
+analysis:
+  top_rows: 30

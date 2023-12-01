@@ -1,0 +1,40 @@
+schema: '2.0'
+stages:
+  load_req_data:
+    cmd: python load_req_data.py
+    deps:
+    - path: load_req_data.py
+      hash: md5
+      md5: bc65026b4924c40352eedcf28f8bcafc
+      size: 335
+    - path: raw_data/number.csv
+      hash: md5
+      md5: d2fcd2a69e38e58b8eef63f7991844ac
+      size: 196
+    params:
+      params.yaml:
+        filter_criteria.num: 0
+    outs:
+    - path: output/req_data/output.csv
+      hash: md5
+      md5: b52cd74f44f162f9a644aace55b217a0
+      size: 267
+  analysis:
+    cmd: python analysis.py
+    deps:
+    - path: analysis.py
+      hash: md5
+      md5: 2415556283e336a223b20c9802d59da2
+      size: 441
+    - path: output/req_data/output.csv
+      hash: md5
+      md5: b52cd74f44f162f9a644aace55b217a0
+      size: 267
+    params:
+      params.yaml:
+        analysis.top_rows: 30
+    outs:
+    - path: output/analysis/output.txt
+      hash: md5
+      md5: 6281245bc9619b12494c71a5939ecca5
+      size: 277
